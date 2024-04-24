@@ -1,35 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import Base from "./Base";
 
-function App() {
-  const [count, setCount] = useState(0)
+import { namesArray } from "./data";
+import Transition from "./Transition";
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+type Page = "base" | "transition";
+
+function Content({ page }: { page: Page }) {
+  if (page === "base") return <Base names={namesArray} />;
+
+  if (page === "transition") return <Transition names={namesArray} />;
+
+  return <p>Not found</p>;
 }
 
-export default App
+function App() {
+  const [page, setPage] = useState<Page>("base");
+
+  return (
+    <div>
+      <p>Current page: {page}</p>
+      <ul style={{ listStyle: "none", display: "flex", gap: "1rem" }}>
+        <li>
+          <button onClick={() => setPage("base")}>Base</button>
+        </li>
+        <li>
+          <button onClick={() => setPage("transition")}>Transition</button>
+        </li>
+      </ul>
+      <Content page={page} />
+    </div>
+  );
+}
+
+export default App;
