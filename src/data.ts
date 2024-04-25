@@ -40,7 +40,7 @@ function generateRandomName() {
 
 // Generate an array of 100,000 random names
 const namesArray: string[] = [];
-for (let i = 0; i < 50_000; i++) {
+for (let i = 0; i < 10_000_000; i++) {
   namesArray.push(generateRandomName());
 }
 

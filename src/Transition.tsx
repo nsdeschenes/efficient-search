@@ -5,6 +5,11 @@ function Transition({ names }: { names: string[] }) {
   const [, startTransition] = useTransition();
   const [filteredNames, setFilteredNames] = useState<string[]>(names);
 
+  const displayNames = [];
+  for (let i = 0; i < 100; i++) {
+    displayNames.push(filteredNames[i]);
+  }
+
   return (
     <>
       <div>
@@ -24,7 +29,7 @@ function Transition({ names }: { names: string[] }) {
         />
       </div>
       <ul>
-        {filteredNames.map((name, i) => (
+        {displayNames.map((name, i) => (
           <li key={i}>{name}</li>
         ))}
       </ul>

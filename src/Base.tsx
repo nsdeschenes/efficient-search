@@ -3,6 +3,11 @@ import { useState } from "react";
 function Base({ names }: { names: string[] }) {
   const [filteredNames, setFilteredNames] = useState<string[]>(names);
 
+  const displayNames = [];
+  for (let i = 0; i < 100; i++) {
+    displayNames.push(filteredNames[i]);
+  }
+
   return (
     <>
       <div>
@@ -17,9 +22,9 @@ function Base({ names }: { names: string[] }) {
         />
       </div>
       <ul>
-        {filteredNames.map((name, i) => (
-          <li key={i}>{name}</li>
-        ))}
+        {displayNames.map((name, i) => {
+          return <li key={i}>{name}</li>;
+        })}
       </ul>
     </>
   );
